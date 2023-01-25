@@ -40,7 +40,7 @@ Newer chips like the CP2102n can be reprogrammed indefinitely.
 $ ./cp210x-cfg -h
 Syntax:
 cp210x-cfg [-h ] |
-           [-m vid:pid] [-d bus:dev]
+           [-m vid:pid] [-d bus.dev]
            [ -l | [-V vid] [-P pid] [-F flush] [-M mode] [-N name] [-S serial]]
 
   -h            This help

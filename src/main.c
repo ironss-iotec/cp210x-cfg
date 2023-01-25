@@ -516,7 +516,7 @@ void syntax (void)
   fprintf (stderr,
 "Syntax:\n"
 "cp210x-cfg [-h ] |\n"
-"           [-m vid:pid] [-d bus:dev]\n"
+"           [-m vid:pid] [-d bus.dev]\n"
 "           [ -l | [-V vid] [-P pid] [-F flush] [-M mode] [-N name] [-S serial]]\n"
 "\n"
 "  -h            This help\n"
@@ -659,8 +659,13 @@ int main (int argc, char *argv[])
       if (ret < 0)
         usb_err_out ("Failed to read descriptor", ret, 5);
 
-      printf ("ID %04x:%04x @ bus %03d, dev %03d: %s\n",
-        vid, pid, bus, dev, buffer);
+      char buffer2[256] = { 0, };
+      ret = read_str(cp210x, ITEM_SERI, (unsigned char *)buffer2, sizeof(buffer2));
+      if (ret < 0)
+        usb_err_out ("Failed to read serial number", ret, 29);
+
+      printf ("ID -m %04x:%04x -d %03d.%03d %s (%s)\n",
+        vid, pid, bus, dev, buffer, buffer2);
       if (want_list)
       {
         libusb_close (cp210x);
