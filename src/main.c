@@ -65,7 +65,7 @@
 #define ITEM_MODE  0x3711
 
 /* Config structore for 2102n devices is from
-   https://www.silabs.com/documents/public/application-notes/AN978-cp210x-usb-to-uart-api-specification.pdf 
+   https://www.silabs.com/documents/public/application-notes/AN978-cp210x-usb-to-uart-api-specification.pdf
 */
 struct cp2102n_deviceDesc {
     uint8_t    bLength;
@@ -353,7 +353,7 @@ static void print_cp210x_cfg (libusb_device_handle *cp210x)
   if (model >= 32) {
     if (cp2102n_read_config(cp210x, &cp2102n_cfg) < 0)
       return;
-    
+
     printf("Use internal serial: %d\n", cp2102n_cfg.useInternalSerial ? 1 : 0);
     //printf("Serial (user): %s\n", )
   }
@@ -517,7 +517,7 @@ void syntax (void)
 "Syntax:\n"
 "cp210x-cfg [-h ] |\n"
 "           [-m vid:pid] [-d bus:dev]\n"
-"           [ -l | [-V vid] [-P pid] [-F flush] [-M mode] [-N name] [-S serial]]\n" 
+"           [ -l | [-V vid] [-P pid] [-F flush] [-M mode] [-N name] [-S serial]]\n"
 "\n"
 "  -h            This help\n"
 "  -m vid:pid    Find and use first device with vid:pid\n"
@@ -535,7 +535,7 @@ void syntax (void)
 "Unless the -d option is used, the first found CP210x device is used.\n"
 "If no programming options are used, the current values are printed.\n"
 "\n"
-  ); 
+  );
 }
 
 
@@ -686,7 +686,7 @@ int main (int argc, char *argv[])
   libusb_set_auto_detach_kernel_driver (cp210x, 1);
 
   uint8_t model;
-  
+
   print_cp210x_cfg (cp210x);
 
   ret = read_vendor(cp210x, ITEM_MODEL, &model, 1);
@@ -735,7 +735,7 @@ int main (int argc, char *argv[])
       printf("ret: %d\n", ret);
       if (ret < 0)
         usb_err_out("failed to write config", ret, 8);
-      
+
     }
 
   }
