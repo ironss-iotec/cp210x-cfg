@@ -73,3 +73,12 @@ Flush buffers: 33
 SCI/ECI mode: 0000
 
 ```
+
+## Dependencies
+
+* libusb-1.0-0-dev
+
+
+## Build
+
+* make
